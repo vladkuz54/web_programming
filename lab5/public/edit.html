@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Animal</title>
+    <link rel="stylesheet" href="style_create.css">
+</head>
+<body>
+    <main>
+        <header class="header">
+            <p class="header__title">My Zoo</p>
+            <nav class="header__nav">
+                <ul>
+                    <li class="header__nav-item"><a href="./index.html">My Animals</a></li>
+                    <li class="header__nav-item"><a href="">Create Animal</a></li>
+                </ul>
+            </nav>
+        </header>
+        <form id="form" class="content">
+            <h2 class="content__header">Edit Animal</h2>
+            <div class="content__name">
+                <p class="content__name-p">Name</p>
+                <input id="content__name" type="text" class="content__name-input" placeholder="Name">
+            </div>
+            <div class="content__description">
+                <p class="content__description-p">Description</p>
+                <textarea id="content__description" rows="5" class="content__description-textarea"></textarea>
+            </div>
+            <div class="content__cost">
+                <p class="content__cost-p">Cost ($)</p>
+                <input id="content__cost" type="number" min="0" max="100000000" class="content__cost-input" placeholder="Cost">
+            </div>
+            <button id="submit__button" type="submit" class="content__submit">Submit</button>
+        </form>
+        <script src="edit.js"></script>
+    </main>
+</body>
+</html>
