@@ -1,0 +1,136 @@
+.hero__inner {
+    padding-top: 130px;
+}
+
+.hero__inner {
+    background-image: url(../image/back_hero.svg);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
+.title {
+    width: 645px;
+    height: 184px;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 80px;
+    line-height: 110%;
+    padding-bottom: 50px;
+}
+
+.hero__inner-paragraph {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 160%;
+    width: 380px;
+    height: 120px;
+}
+
+.hero__inner-button {
+    padding-bottom: 100px;
+    padding-top: 50px;
+}
+
+.button_request_demo-hero {
+    display: none;
+}
+
+
+@media screen and (max-width: 1140px) {
+    
+    .hero__inner {
+        background-position: right -30vw bottom;
+    }
+    
+}
+
+@media screen and (max-width: 920px) {
+    
+    .hero__inner {
+        background-position: right -45vw bottom;
+    }
+    
+}
+
+
+@media screen and (max-width:768px) {
+    .hero__inner{
+        margin: 0 auto;
+        background-image: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-bottom: 30px;
+    }
+    
+    .button_request_demo-hero {
+        display: flex;
+        padding: 17px 29px;
+        border-radius: 50px;
+        background-color: #fff;
+        height: 60px;
+        width: 210px;
+        box-shadow: 0px 5px 5px 0px rgba(75, 93, 104, 0.10);
+        cursor: pointer;
+    }
+    
+    .button_request_demo-hero:hover {background-color: rgba(75, 93, 104, 0.10)}
+
+
+
+    .button_request_demo-hero:active {
+        background-color: rgba(75, 93, 104, 0.10);
+        transform: translateY(4px);
+    }
+
+    
+    
+    .hero__inner-buttons {
+        font-size: 1.25em;
+        padding-top: 30px;
+    }
+    
+    .hero__inner-button {
+        margin-top: 20px;
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+    
+    .title {
+        width: auto;
+        height: auto;
+    }
+    .hero__inner-paragraph {
+        width: auto;
+        height: auto;
+        margin: 0 10vw;
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+    
+    .title {
+        font-size: 60px;
+    }
+    
+    .hero__inner-paragraph {
+        font-size: 16px;
+    }
+    
+} 
+
+
+@media screen and (max-width: 376px) {
+    
+    .title {
+        font-size: 40px;
+    }
+    
+    .hero__inner-paragraph {
+        font-size: 12px;
+    }
+    
+} 
+

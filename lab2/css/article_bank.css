@@ -1,0 +1,124 @@
+.article__bank {
+    display: flex;
+    width: 1117px;
+    height: 560px;
+    border-radius: 50px;
+    background: rgba(240, 99, 184, 0.15);
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article__bank-text {
+    width: 475px;
+    padding-left: 62px;
+    padding-top: 125px;
+}
+
+.article__bank-paragraph {
+    width: 474px;
+    height: 170px;
+    font-size: 18px;
+    line-height: 160%;
+    padding-top: 40px;
+}
+
+
+.article__img-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+@media screen and (max-width: 1140px) {
+    
+    .article__bank {
+        width: auto;
+        padding-left: 10px;
+        padding-left: 10px;
+    }
+    
+    .title_h2 {
+        
+    }
+    
+    .article__bank-paragraph {
+        font-size: 18px;
+        line-height: 160%;
+        padding-top: 4vw;
+    }
+    
+}
+
+
+@media screen and (max-width: 1036px) {
+    
+    .article__bank {
+        text-align: center;
+        display: block;
+        width: auto;
+        height: auto;
+    }
+    
+    .article__bank-img {
+        height: auto;
+        width: auto;
+        padding-top: 0;
+        padding-left: 0;
+        padding-right: 5vw;
+    }
+    
+    .article__bank-text-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    
+    .article__bank-text {
+        width: 475px;
+        height: auto;
+        padding-top: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 20px;
+    }
+    
+    .article__bank-paragraph {
+        width: auto;
+        height: auto;
+        font-size: 18px;
+        line-height: 160%;
+        padding-top: 4vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    
+    
+}
+
+@media screen and (max-width: 450px) {
+    
+    .title_h2 {
+        font-size: 30px;
+    }
+    
+    .article__bank-paragraph {
+        font-size: 16px;
+    }
+    
+} 
+
+@media screen and (max-width: 376px) {
+    
+    .article__bank-paragraph {
+        font-size: 14px;
+    }
+}
+
+.article__bank-text-flex {
+    
+}

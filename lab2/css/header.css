@@ -1,0 +1,132 @@
+.header {
+    display: flex;
+    height: 60px;
+    padding-top: 50px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__logo {
+    width: 49px;
+    height: 35px;
+    display: flex;
+    align-items: flex-end;
+    margin-right: 81px;
+}
+
+.header__menu {
+    display: none;
+}
+
+
+.header__logo__nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.header__logo-small {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #9C69E2;
+}
+
+.header__logo-big {
+    width: 20px;
+    height: 35px;
+    border-radius: 20px;
+    background-color: #F063B8;
+    margin-left: 9px;
+}
+
+.header__nav ul{
+    display: flex;
+    align-items: center;
+}
+
+.header__nav-about a{
+    color: var(--2, #212353);
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.header__nav-item {
+    margin-left: 40px;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    
+    .header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        padding: 20px;
+        background-color: #F6FAFD;
+        z-index: 10;
+        justify-content: space-between;
+    }
+    
+    .header__menu {
+        display: block;
+        width: 30px;
+        height: 30px;
+    }
+    
+    .button_request_demo {
+        display: none;
+    }
+    
+    .header__nav {
+        background: #F6FAFD;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin-top: 0;
+        clip-path: circle(0 at top right);
+        transition: clip-path 0.9s ease-in;
+    }
+    
+    .header__nav.open {
+        clip-path: circle(1500px at top);
+    }
+    
+    .header__nav ul {
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    .header__nav {
+        margin-right: 0;
+        flex: 1;
+    }
+    
+    .header__nav-about {
+        margin-right: 0;
+        padding-top: 10vh;
+        flex: 1;
+    }
+    
+    .header__nav-item {
+        margin-right: 0;
+        padding-top: 10vh;
+        flex: 1;
+        margin-left: 0;
+    }
+    
+    .header__nav a {
+        font-weight: 500;
+        display: block;
+        font-size: 32px;
+    }
+}
+
+
+
