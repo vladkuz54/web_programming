@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+    <link rel="stylesheet" href="/css/create/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <header class="header">
+            <p class="header__title">
+                My Zoo
+            </p>
+            <nav id="nav-links" class="header__nav">
+                <ul>
+                    <li class="header__nav-item"><a href="./index.html">My Animals</a></li>
+                    <li class="header__nav-item"><a href="">Create Animal</a></li>
+                </ul>
+            </nav>
+        </header>
+        <form id="form" class="content">
+            <h2 class="content__header">Create Animal</h2>
+            <div class="content__name">
+                <p class="content__name-p">Name</p>
+                <input id="content__name" type="text" class="content__name-input" placeholder="Name">
+            </div>
+            <div class="content__description">
+                <p class="content__description-p">Description</p>
+                <textarea id="content__description" name="Description" id="" rows="5" class="content__description-textarea" resizable="auto"></textarea> 
+            </div>
+            <div class="content__cost">
+                <p class="content__cost-p">Cost ($)</p>
+                <input id="content__cost" type="number" min="0" max="100000000" class="content__cost-input" placeholder="Cost">
+            </div>
+            <button id="submit__button" type="submit "class="content__submit">Submit</button>
+        </form>
+        <script src="/js/create.js"></script>
+    </main>
+</body>
+</html>
