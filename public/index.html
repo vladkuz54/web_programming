@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Zoo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <header class="header">
+            <p class="header__title">My Zoo</p>
+            <nav class="header__nav">
+                <ul>
+                    <li class="header__nav-item"><a href="">My Animals</a></li>
+                    <li class="header__nav-item"><a href="./create.html">Create Animal</a></li>
+                </ul>
+            </nav>
+            <input type="text" id="find_item" placeholder="Search..">
+            <button id="search_button" class="search">Search</button>
+            <button id="clear_button" class="clear">Clear</button>
+        </header>
+        <div class="content">
+            <div class="settings">
+                <div class="sort">
+                    <p class="sort__title"> 
+                        Manage animals
+                    </p>
+                    <div class="sort__parag">
+                        <p class="sort__parag-p">
+                            Sort by the most expensive one:
+                        </p>
+                        <label class="switch">
+                          <input type="checkbox" id="sort_checkbox">
+                          <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="count">
+                    <p class="count__parag">
+                        Count total price:
+                    </p>
+                    <div class="count__buttons">
+                        <button id="count_button" class="count__button">Count</button>
+                        <button id="count_clear_button" class="count__button-clear">Clear</button>
+                    </div>
+                    <div class="count__num">
+                        <p class="count__num-tittle">Total price: </p>
+                        <p id="sumprice" class="count__num-num">0 $</p>
+                    </div>
+                </div>
+            </div>
+            <ul id="items_container" class="cards"></ul>
+        </div>
+        <script src="index.js"></script>
+    </main>
+</body>
+</html>
