@@ -1,0 +1,200 @@
+[
+  {
+    "id": 0,
+    "title": "Max",
+    "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+    "imgpath": "Husky",
+    "price": 100,
+    "type": "dog",
+    "stock": [
+      {
+        "color": "red",
+        "amount": 3
+      },
+      {
+        "color": "blue",
+        "amount": 2
+      },
+      {
+        "color": "green",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Felix",
+    "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+    "imgpath": "Ginger",
+    "price": 30,
+    "type": "cat",
+    "stock": [
+      {
+        "color": "red",
+        "amount": 0
+      },
+      {
+        "color": "blue",
+        "amount": 3
+      },
+      {
+        "color": "green",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Oscar",
+    "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+    "imgpath": "Shorthair",
+    "price": 40,
+    "type": "cat",
+    "stock": [
+      {
+        "color": "red",
+        "amount": 3
+      },
+      {
+        "color": "blue",
+        "amount": 2
+      },
+      {
+        "color": "green",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Tiger",
+    "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+    "imgpath": "Ginger",
+    "price": 15,
+    "type": "cat",
+    "stock": [
+      {
+        "color": "red",
+        "amount": 3
+      },
+      {
+        "color": "blue",
+        "amount": 2
+      },
+      {
+        "color": "green",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Poppy",
+    "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+    "imgpath": "Husky",
+    "price": 120,
+    "type": "dog",
+    "stock": [
+      {
+        "color": "red",
+        "amount": 3
+      },
+      {
+        "color": "blue",
+        "amount": 2
+      },
+      {
+        "color": "green",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Kitty",
+    "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+    "imgpath": "Shorthair",
+    "price": 50,
+    "type": "cat",
+    "stock": [
+      {
+        "color": "red",
+        "amount": 3
+      },
+      {
+        "color": "blue",
+        "amount": 2
+      },
+      {
+        "color": "green",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Cooper",
+    "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+    "imgpath": "German",
+    "price": 110,
+    "type": "dog",
+    "stock": [
+      {
+        "color": "red",
+        "amount": 3
+      },
+      {
+        "color": "blue",
+        "amount": 2
+      },
+      {
+        "color": "green",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Kitty Cat",
+    "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+    "imgpath": "Ginger",
+    "price": 35,
+    "type": "cat",
+    "stock": [
+      {
+        "color": "red",
+        "amount": 2
+      },
+      {
+        "color": "blue",
+        "amount": 2
+      },
+      {
+        "color": "green",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Buddy",
+    "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+    "imgpath": "Husky",
+    "price": 130,
+    "type": "dog",
+    "stock": [
+      {
+        "color": "red",
+        "amount": 3
+      },
+      {
+        "color": "blue",
+        "amount": 2
+      },
+      {
+        "color": "green",
+        "amount": 1
+      }
+    ]
+  }
+]
