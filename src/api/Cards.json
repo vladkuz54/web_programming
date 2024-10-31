@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "title": "Max",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+        "imgpath": "components/image/husky.jpg",
+        "price": 100,
+        "type": "dog"
+    },
+    {
+        "id": 2,
+        "title": "Felix",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+        "imgpath": "components/image/ginger.jpg",
+        "price": 30,
+        "type": "cat"
+    },
+    {
+        "id": 3,
+        "title": "Oscar",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+        "imgpath": "components/image/shorthair.png",
+        "price": 40,
+        "type": "cat"
+    },
+    {
+        "id": 4,
+        "title": "Tiger",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+        "imgpath": "components/image/ginger.jpg",
+        "price": 15,
+        "type": "cat"
+    },
+    {
+        "id": 5,
+        "title": "Poppy",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+        "imgpath": "components/image/husky.jpg",
+        "price": 120,
+        "type": "dog"
+    },
+    {
+        "id": 6,
+        "title": "Kitty",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+        "imgpath": "components/image/shorthair.png",
+        "price": 50,
+        "type": "cat"
+    },
+    {
+        "id": 7,
+        "title": "Cooper",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+        "imgpath": "components/image/german.jpg",
+        "price": 110,
+        "type": "dog"
+    },
+    {
+        "id": 8,
+        "title": "Kitty Cat",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+        "imgpath": "components/image/ginger.jpg",
+        "price": 35,
+        "type": "cat"
+    },
+    {
+        "id": 9,
+        "title": "Buddy",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, nam.",
+        "imgpath": "components/image/husky.jpg",
+        "price": 130,
+        "type": "dog"
+    }
+]
