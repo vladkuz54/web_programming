@@ -1,0 +1,64 @@
+.register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.register h2 {
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.register__form {
+    margin-top: 50px;
+}
+
+.register__form input {
+    padding: 5px;
+    border: 2px solid;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.already_regist {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.already_regist p {
+    font-size: 20px;
+    color: black;
+}
+
+.already_regist a {
+    color: rgb(156, 156, 156);
+    margin-left: 10px;
+}
+
+.register__button {
+    display: flex;
+    justify-content: center;
+}
+
+.register__button button {
+    color: white;
+    background-color: rgb(62, 61, 61);
+    border-radius: 10px;
+    height: 50px;
+    width: 140px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.register__button button:hover {background-color: rgba(0, 0, 0, 0.479)}
+
+.register__button button:active {
+  background-color: rgba(0, 0, 0, 0.479);
+  transform: translateY(4px);
+}
