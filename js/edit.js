@@ -13,11 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
         costInput.value = cardData.cost;
     }
 
-    // Обробник події для кнопки Submit
     submitButton.addEventListener("click", function (event) {
         event.preventDefault();
         
-        // Оновлюємо дані картки
         const updatedCard = {
             name: nameInput.value,
             description: descriptionInput.value,
@@ -27,16 +25,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const editIndex = localStorage.getItem("editIndex");
         const cards = JSON.parse(localStorage.getItem("cards"));
         
-        cards[editIndex] = updatedCard; // Оновлюємо дані картки
+        cards[editIndex] = updatedCard; 
 
-        // Зберігаємо оновлений масив карток
         localStorage.setItem("cards", JSON.stringify(cards));
 
-        // Видаляємо непотрібні дані з sessionStorage
         localStorage.removeItem("editIndex");
         localStorage.removeItem("editCard");
 
-        // Переходимо на головну сторінку після редагування
         window.location.href = "index.html";
     });
 });
