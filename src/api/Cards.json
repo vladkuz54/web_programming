@@ -9,15 +9,15 @@
     "stock": [
       {
         "color": "red",
-        "amount": 3
+        "amount": 10
       },
       {
         "color": "blue",
-        "amount": 2
+        "amount": 10
       },
       {
         "color": "green",
-        "amount": 1
+        "amount": 10
       }
     ]
   },
@@ -31,15 +31,15 @@
     "stock": [
       {
         "color": "red",
-        "amount": 0
+        "amount": 10
       },
       {
         "color": "blue",
-        "amount": 2
+        "amount": 10
       },
       {
         "color": "green",
-        "amount": 1
+        "amount": 10
       }
     ]
   },
@@ -53,15 +53,15 @@
     "stock": [
       {
         "color": "red",
-        "amount": 3
+        "amount": 10
       },
       {
         "color": "blue",
-        "amount": 2
+        "amount": 10
       },
       {
         "color": "green",
-        "amount": 1
+        "amount": 10
       }
     ]
   },
@@ -75,15 +75,15 @@
     "stock": [
       {
         "color": "red",
-        "amount": 3
+        "amount": 10
       },
       {
         "color": "blue",
-        "amount": 2
+        "amount": 10
       },
       {
         "color": "green",
-        "amount": 1
+        "amount": 10
       }
     ]
   },
@@ -97,15 +97,15 @@
     "stock": [
       {
         "color": "red",
-        "amount": 2
+        "amount": 10
       },
       {
         "color": "blue",
-        "amount": 2
+        "amount": 10
       },
       {
         "color": "green",
-        "amount": 1
+        "amount": 10
       }
     ]
   },
@@ -119,15 +119,15 @@
     "stock": [
       {
         "color": "red",
-        "amount": 3
+        "amount": 10
       },
       {
         "color": "blue",
-        "amount": 2
+        "amount": 10
       },
       {
         "color": "green",
-        "amount": 1
+        "amount": 10
       }
     ]
   },
@@ -141,15 +141,15 @@
     "stock": [
       {
         "color": "red",
-        "amount": 3
+        "amount": 10
       },
       {
         "color": "blue",
-        "amount": 2
+        "amount": 10
       },
       {
         "color": "green",
-        "amount": 1
+        "amount": 10
       }
     ]
   },
@@ -163,15 +163,15 @@
     "stock": [
       {
         "color": "red",
-        "amount": 2
+        "amount": 10
       },
       {
         "color": "blue",
-        "amount": 2
+        "amount": 10
       },
       {
         "color": "green",
-        "amount": 1
+        "amount": 10
       }
     ]
   },
@@ -185,15 +185,15 @@
     "stock": [
       {
         "color": "red",
-        "amount": 3
+        "amount": 10
       },
       {
         "color": "blue",
-        "amount": 2
+        "amount": 10
       },
       {
         "color": "green",
-        "amount": 1
+        "amount": 10
       }
     ]
   }
