@@ -100,16 +100,3 @@ button {
 
 
 
-@media screen and (max-width: 1024px) {
-    .main {
-        padding: 0 40px;
-    }
-}
-
-@media screen and (max-width: 786px) {
-    body {
-        text-align: center;
-    }
-}
-
-

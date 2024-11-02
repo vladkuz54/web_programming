@@ -33,34 +33,3 @@
     height: 100px;
 }
 
-
-@media screen and (max-width: 768px) {
-    
-    .article__bank {
-        display: block;
-        width: auto;
-        height: auto;
-    }
-    
-    .article__bank-img {
-        height: auto;
-        width: auto;
-        padding-top: 0;
-        padding-left: 0;
-        padding-right: 5vw;
-    }
-    
-    .article__bank-text {
-        width: auto;
-        height: auto;
-        padding-top: 0;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 15px;
-    }
-    
-    .article__bank-paragraph {
-        width: auto;
-        height: auto;
-    }
-}
