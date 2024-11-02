@@ -14,7 +14,6 @@ form.addEventListener("submit", function (e) {
 
     const newAnimal = { name, description, cost };
 
-    // Надсилаємо запит на сервер для створення нової картки
     fetch('/api/animals', {
         method: 'POST',
         headers: {
@@ -25,7 +24,7 @@ form.addEventListener("submit", function (e) {
     .then(response => response.json())
     .then(data => {
         console.log('Animal created:', data);
-        window.location.href = 'index.html';  // Після створення картки переходимо на index
+        window.location.href = 'index.html'; 
     })
     .catch((error) => {
         console.error('Error:', error);

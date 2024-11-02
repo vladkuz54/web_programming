@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let filteredAnimals = [];
     let originalOrder = [];
 
-    // Завантаження тваринок
     fetch('/api/animals')
         .then(response => response.json())
         .then(data => {
@@ -64,8 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 const index = e.target.getAttribute('data-index');
                 fetch(`/api/animals/${index}`, { method: 'DELETE' })
                     .then(() => {
-                        filteredAnimals.splice(index, 1);  // Видаляємо з локального масиву
-                        renderCards(filteredAnimals);  // Оновлюємо відображення карток
+                        filteredAnimals.splice(index, 1);  
+                        renderCards(filteredAnimals); 
                     })
                     .catch(error => {
                         console.error('Помилка при видаленні тваринки:', error);
@@ -74,38 +73,34 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Підрахунок загальної ціни
     function calculateTotalPrice() {
         fetch('/api/animals/total-price')
             .then(response => response.json())
             .then(data => {
-                totalSumElement.textContent = `${data.total} $`;  // Виводимо актуальну загальну ціну
+                totalSumElement.textContent = `${data.total} $`;  
             })
             .catch(error => {
                 console.error('Помилка при підрахунку загальної ціни:', error);
             });
     }
 
-    // Очищення загальної ціни
     countClearButton.addEventListener("click", (event) => {
         event.preventDefault();
         fetch('/api/animals/clear-total', { method: 'POST' })
             .then(response => response.json())
             .then(data => {
-                totalSumElement.textContent = `${data.total} $`;  // Очищуємо поле з ціною до 0
+                totalSumElement.textContent = `${data.total} $`; 
             })
             .catch(error => {
                 console.error('Помилка при очищенні загальної ціни:', error);
             });
     });
 
-    // Підрахунок загальної ціни при натисканні кнопки Count
     countButton.addEventListener("click", (event) => {
         event.preventDefault();
         calculateTotalPrice();
     });
 
-    // Пошук тваринок
     searchButton.addEventListener("click", () => {
         const searchTerm = document.getElementById("find_item").value.trim().toLowerCase();
         fetch(`/api/animals/search?name=${searchTerm}`)
@@ -120,7 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 
-    // Очищення пошуку
     clearButton.addEventListener("click", () => {
         document.getElementById("find_item").value = '';
         fetch(`/api/animals/search?name=`)
@@ -138,19 +132,17 @@ document.addEventListener("DOMContentLoaded", function () {
         
         console.log("Чекбокс стан: ", sortCheckBox.checked);
 
-        // Перевіряємо стан чекбокса
         if (sortCheckBox.checked) {
-            sortOrder = 'desc';  // Якщо чекбокс увімкнений — сортуємо за спаданням ціни
+            sortOrder = 'desc';  
         } else {
-            sortOrder = 'index';  // Якщо чекбокс вимкнений — сортуємо за індексом
+            sortOrder = 'index';  
         }
-    
-        // Надсилаємо запит на сервер для сортування
+  
         fetch(`/api/animals/sort?order=${sortOrder}`)
             .then(response => response.json())
             .then(sortedAnimals => {
-                filteredAnimals = sortedAnimals;  // Оновлюємо масив відсортованих тварин
-                renderCards(filteredAnimals);     // Відображаємо відсортовані картки
+                filteredAnimals = sortedAnimals; 
+                renderCards(filteredAnimals);    
             })
             .catch(error => {
                 console.error('Помилка при сортуванні:', error);
