@@ -92,7 +92,7 @@ app.get('/api/cards/:id', async (req, res) => {
   }
 });
 
-app.patch('/api/cards', async (req, res) => {
+app.patch('/api/cards-catalog', async (req, res) => {
   const { id, color, amount } = req.body;
   const filePath = path.join(__dirname, 'src/api/Cards.json');
 

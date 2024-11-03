@@ -41,7 +41,7 @@ function ItemPage() {
 
     const handleColorChange = (e) => {
         setSelectedColor(e.target.value);
-        setAmount(1); // Reset amount to 1 when color changes
+        setAmount(1);
     };
 
     const addToCart = async () => {
@@ -53,7 +53,7 @@ function ItemPage() {
         }
 
         try {
-            const response = await axios.patch('/api/cards', {
+            const response = await axios.patch('/api/cards-catalog', {
                 id: card.id,
                 color: selectedColor,
                 amount: amount
@@ -61,7 +61,7 @@ function ItemPage() {
 
             if (response.data.success) {
                 const updatedCard = response.data.updatedCard;
-                updatedCard.imageSrc = card.imageSrc; // Preserve imageSrc
+                updatedCard.imageSrc = card.imageSrc; 
                 setCard(updatedCard);
 
                 const existingItem = cart.find(item => item.id === card.id && item.color === selectedColor);

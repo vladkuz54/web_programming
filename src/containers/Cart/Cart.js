@@ -21,7 +21,7 @@ function Cart() {
   useEffect(() => {
     const fetchStock = async () => {
       try {
-        const response = await axios.get('/api/cards');
+        const response = await axios.get('/api/cards-catalog');
         const stockData = response.data.reduce((acc, card) => {
           card.stock.forEach(stockItem => {
             acc[`${card.id}-${stockItem.color}`] = stockItem.amount;
@@ -40,11 +40,6 @@ function Cart() {
   const handleIncrement = async (itemId, itemColor) => {
     const stockKey = `${itemId}-${itemColor}`;
     const stockAmount = stock[stockKey] || 0;
-
-    if (stockAmount <= 0) {
-      alert('Cannot add more items, out of stock');
-      return;
-    }
 
     try {
       const response = await axios.patch('/api/update-stock', {

@@ -7,8 +7,6 @@ import ItemPage from "./containers/ItemPage/ItemPage.js";
 import Cart from "./containers/Cart/Cart.js";
 import CheckOut from "./containers/CheckOut/CheckOut.js";
 import SuccessPage from "./containers/CheckOut/SuccessPage.js";
-import Register from "./containers/Register/Register.js";
-import Login from "./containers/Login/Login.js";
 
 function App() {
 
@@ -22,8 +20,6 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/success" element={<SuccessPage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
       <Footer />
