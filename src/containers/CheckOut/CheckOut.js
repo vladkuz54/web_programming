@@ -17,7 +17,7 @@ const validationSchema = Yup.object({
     .required('Last Name is required')
     .matches(/^[a-zA-Z]+$/, 'Last Name can only contain letters'),
   email: Yup.string()
-    .email('Invalid email address')
+    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, 'Invalid email address')
     .required('Email is required'),
   phone: Yup.string()
     .required('Phone is required')
