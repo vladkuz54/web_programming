@@ -3,11 +3,17 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import fs from 'fs/promises';
+import bcrypt from 'bcrypt';
+import User from './src/models/User.js';
+import Cart from './src/models/Cart.js';
+import initDb from './src/initDb.js';
 
 const app = express();
 const PORT = 5000;
 
 app.use(express.json());
+
+initDb();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -146,9 +152,125 @@ app.patch('/api/update-stock', async (req, res) => {
   }
 });
 
+app.post('/api/register', async (req, res) => {
+  const { username, email, password } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.create({ username, email, password: hashedPassword });
+    await Cart.create({ user_id: user.id, items: [] });
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ where: { email } });
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+    let cart = await Cart.findOne({ where: { user_id: user.id } });
+    if (!cart) {
+      await Cart.create({ user_id: user.id, items: [] });
+    }
+    res.status(200).json({ token: email });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete('/api/user', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  try {
+    const user = await User.findOne({ where: { email: token } });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    await user.destroy();
+    res.status(200).json({ message: 'User deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/user-info', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  try {
+    const user = await User.findOne({ where: { email: token } });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.status(200).json({ username: user.username, email: user.email });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+app.post('/api/cart', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  const { items } = req.body;
+  try {
+    const user = await User.findOne({ where: { email: token } });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    let cart = await Cart.findOne({ where: { user_id: user.id } });
+    if (cart) {
+      cart.items = items;
+      await cart.save();
+    } else {
+      cart = await Cart.create({ user_id: user.id, items });
+    }
+    res.status(201).json(cart);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/cart', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  try {
+    const user = await User.findOne({ where: { email: token } });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const cart = await Cart.findOne({ where: { user_id: user.id } });
+    if (!cart) {
+      return res.status(404).json({ error: 'Cart not found' });
+    }
+    res.status(200).json(cart);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete('/api/cart', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  try {
+    const user = await User.findOne({ where: { email: token } });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const cart = await Cart.findOne({ where: { user_id: user.id } });
+    if (!cart) {
+      return res.status(404).json({ error: 'Cart not found' });
+    }
+    await cart.destroy();
+    res.status(200).json({ message: 'Cart cleared successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
+initDb();
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

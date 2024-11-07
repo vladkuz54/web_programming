@@ -8,7 +8,7 @@ import DocumentTitle from '../../components/helmet/document_title.js';
 import Loader from '../../components/Loader/Loader.js';
 import axios from 'axios';
 import Header from '../Header/Header.js';
-import { getToken } from '../../utils/auth.js';
+import { getToken, getCart, addToCart } from '../../utils/auth.js';
 
 function Cart() {
   DocumentTitle('Cart');
@@ -43,18 +43,26 @@ function Cart() {
   }, [dispatch]);
 
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-      const userCart = JSON.parse(localStorage.getItem(`cart_${currentUser.email}`)) || [];
-      dispatch(setCart(userCart));
-    }
+    const fetchCart = async () => {
+      const token = getToken();
+      if (token) {
+        const userCart = await getCart();
+        dispatch(setCart(userCart.items));
+      }
+    };
+
+    fetchCart();
   }, [dispatch]);
 
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-      localStorage.setItem(`cart_${currentUser.email}`, JSON.stringify(cart));
-    }
+    const updateCart = async () => {
+      const token = getToken();
+      if (token) {
+        await addToCart(cart);
+      }
+    };
+
+    updateCart();
   }, [cart]);
 
   const handleIncrement = async (itemId, itemColor) => {
@@ -78,9 +86,6 @@ function Cart() {
       });
 
       if (response.data.success) {
-        const updatedCart = cart.map(item => 
-          item.id === itemId && item.color === itemColor ? { ...item, quantity: item.quantity + 1 } : item
-        );
         dispatch(incrementQuantity({ id: itemId, color: itemColor }));
         setStock(prevStock => ({
           ...prevStock,
@@ -110,17 +115,6 @@ function Cart() {
       });
 
       if (response.data.success) {
-        const updatedCart = cart.reduce((acc, item) => {
-          if (item.id === itemId && item.color === itemColor) {
-            if (item.quantity > 1) {
-              acc.push({ ...item, quantity: item.quantity - 1 });
-            }
-          } else {
-            acc.push(item);
-          }
-          return acc;
-        }, []);
-        
         if (item.quantity > 1) {
           dispatch(decrementQuantity({ id: itemId, color: itemColor }));
         } else {
@@ -145,66 +139,66 @@ function Cart() {
 
   return (
     <>
-    <Header />
-    <div className="cart">
-      <h1>Shopping Cart</h1>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          {cart.length === 0 ? (
-            <div>
-              <h2 className="cart_empty_text">Your cart is empty</h2>
-              <div className="cart__button">
-                <Link to="/catalog">
-                  <button className="back_to_catalog">Back to catalog</button>
-                </Link>
-              </div>
-            </div>
-          ) : (
-            <div>
-              {cart.map((item) => (
-                <div key={`${item.id}-${item.color}`} className="cart__item">
-                  <img
-                    className="cart__item-image"
-                    src={imageSrc(item.imgpath)}
-                    alt={item.title}
-                  />
-                  <div className="cart__item-details ">
-                    <h2>{item.title} ({item.color})</h2>
-                    <div className="cart__item-quantity">
-                      <button onClick={() => handleDecrement(item.id, item.color)}>
-                        -
-                      </button>
-                      <span>{item.quantity}</span>
-                      <button 
-                        onClick={() => handleIncrement(item.id, item.color)}
-                        disabled={stock[`${item.id}-${item.color}`] <= 0}
-                      >
-                        +
-                      </button>
-                    </div>
-                    <p>$ {item.price * item.quantity}</p>
-                  </div>
+      <Header />
+      <div className="cart">
+        <h1>Shopping Cart</h1>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {cart.length === 0 ? (
+              <div>
+                <h2 className="cart_empty_text">Your cart is empty</h2>
+                <div className="cart__button">
+                  <Link to="/catalog">
+                    <button className="back_to_catalog">Back to catalog</button>
+                  </Link>
                 </div>
-              ))}
-              <div className="cart__summary-price">
-                <h2 className="h">Total amount: </h2>
-                <h2>$ {totalPrice}</h2>
               </div>
-              <div className="cart__buttons ">
-                <Link to="/catalog">
-                  <button className="back_to_catalog">Back to catalog</button>
-                </Link>
-                <Link to="/checkout">
-                  <button className="continue">Continue</button>
-                </Link>
+            ) : (
+              <div>
+                {cart.map((item) => (
+                  <div key={`${item.id}-${item.color}`} className="cart__item">
+                    <img
+                      className="cart__item-image"
+                      src={imageSrc(item.imgpath)}
+                      alt={item.title}
+                    />
+                    <div className="cart__item-details ">
+                      <h2>{item.title} ({item.color})</h2>
+                      <div className="cart__item-quantity">
+                        <button onClick={() => handleDecrement(item.id, item.color)}>
+                          -
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button 
+                          onClick={() => handleIncrement(item.id, item.color)}
+                          disabled={stock[`${item.id}-${item.color}`] <= 0}
+                        >
+                          +
+                        </button>
+                      </div>
+                      <p>$ {item.price * item.quantity}</p>
+                    </div>
+                  </div>
+                ))}
+                <div className="cart__summary-price">
+                  <h2 className="h">Total amount: </h2>
+                  <h2>$ {totalPrice}</h2>
+                </div>
+                <div className="cart__buttons ">
+                  <Link to="/catalog">
+                    <button className="back_to_catalog">Back to catalog</button>
+                  </Link>
+                  <Link to="/checkout">
+                    <button className="continue">Continue</button>
+                  </Link>
+                </div>
               </div>
-            </div>
-          )}
-        </>
-      )}
-    </div>
+            )}
+          </>
+        )}
+      </div>
     </>
   );
 }

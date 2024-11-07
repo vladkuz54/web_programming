@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
-import { setToken } from '../../utils/auth.js';
+import { setToken, register } from '../../utils/auth.js';
 import ErrorMessage  from '../CheckOut/ErrorMessage.js';
 import './Register.css';
 import DocumentTitle from '../../components/helmet/document_title.js';
@@ -13,9 +13,14 @@ function Register() {
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required('Username is required'),
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+    username: Yup.string()
+      .required('Username is required'),
+    email: Yup.string()
+      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, 'Invalid email address')
+      .required('Email is required'),
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 characters')
+      .required('Password is required'),
     retypePassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Passwords must match')
       .required('Retype password is required'),
@@ -27,29 +32,18 @@ function Register() {
       <Formik
         initialValues={{ username: '', email: '', password: '', retypePassword: '' }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
+        onSubmit={async (values) => {
           try {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            const userExists = users.some(user => user.email === values.email);
-
-            if (userExists) {
-              alert('User already exists');
-              return;
-            }
-
-            const newUser = {
+            const user = await register({
               username: values.username,
               email: values.email,
               password: values.password,
-            };
-
-            users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(users));
-            localStorage.setItem('currentUser', JSON.stringify(newUser));
-            setToken(values.email); // Use email as a token for simplicity
+            });
+            setToken(user.email);
             navigate('/home');
           } catch (error) {
             console.error('Register error:', error);
+            alert('User already exists');
           }
         }}
       >

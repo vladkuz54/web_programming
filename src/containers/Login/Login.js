@@ -2,11 +2,10 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
-import { setToken } from '../../utils/auth.js';
+import { setToken, login } from '../../utils/auth.js';
 import ErrorMessage from "../CheckOut/ErrorMessage.js";
 import './Login.css';
 import DocumentTitle from '../../components/helmet/document_title.js';
-
 
 function Login() {
   DocumentTitle('Login');
@@ -14,8 +13,12 @@ function Login() {
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required')
+    email: Yup.string()
+    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, 'Invalid email address')
+    .required('Email is required'),
+    password: Yup.string()
+    .min(6, 'Password must be at least 6 characters')
+    .required('Password is required')
   });
 
   return (
@@ -24,21 +27,14 @@ function Login() {
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
+        onSubmit={async (values) => {
           try {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            const user = users.find(user => user.email === values.email && user.password === values.password);
-
-            if (!user) {
-              alert('Invalid email or password');
-              return;
-            }
-
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            setToken(values.email); // Use email as a token for simplicity
+            const { token } = await login(values);
+            setToken(token);
             navigate('/home');
           } catch (error) {
             console.error('Login error:', error);
+            alert('Invalid email or password');
           }
         }}
       >

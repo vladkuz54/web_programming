@@ -8,6 +8,7 @@ import './CheckOut.css';
 import { useDispatch } from 'react-redux';
 import { setCart } from '../../Redux/CartSlice.js';
 import Header from '../Header/Header.js';
+import { getToken } from '../../utils/auth.js';
 
 const validationSchema = Yup.object({
   firstName: Yup.string()
@@ -17,7 +18,7 @@ const validationSchema = Yup.object({
     .required('Last Name is required')
     .matches(/^[a-zA-Z]+$/, 'Last Name can only contain letters'),
   email: Yup.string()
-    .email('Invalid email address')
+    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, 'Invalid email address')
     .required('Email is required'),
   phone: Yup.string()
     .required('Phone is required')
@@ -35,19 +36,23 @@ function CheckOut() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const token = getToken();
+
   return (
     <>
     <Header/>
     <div className='checkout'>
       <h1 className='checkout__title'>Check Out</h1>
       <Formik
-          initialValues={{ firstName: '', lastName: '', email: '', phone: '', address: '' }}
+          initialValues={{ firstName: '', lastName: '', email: token || '', phone: '', address: '' }}
           validationSchema={validationSchema}
-          onSubmit={async (values, { setSubmitting }) => {
-            console.log(values);
+          onSubmit={async ({ setSubmitting }) => {
             try {
-              // Clear localStorage
-              localStorage.removeItem('cart');
+              const token = getToken();
+              if (token) {
+                // Clear localStorage for the specific user
+                localStorage.removeItem(`cartItems_${token}`);
+              }
               // Update Redux state
               dispatch(setCart([]));
               // Navigate to success page
