@@ -163,9 +163,7 @@ function Cart() {
                 <Link to="/catalog">
                   <button className="back_to_catalog">Back to catalog</button>
                 </Link>
-                <Link to="/checkout">
-                  <button className="continue">Continue</button>
-                </Link>
+                <button className="continue">Continue</button>
               </div>
             </div>
           )}
