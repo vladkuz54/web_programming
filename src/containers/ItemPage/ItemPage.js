@@ -41,7 +41,7 @@ function ItemPage() {
 
     const handleColorChange = (e) => {
         setSelectedColor(e.target.value);
-        setAmount(1);
+        setAmount(1); // Reset amount to 1 when color changes
     };
 
     const addToCart = async () => {
@@ -61,7 +61,7 @@ function ItemPage() {
 
             if (response.data.success) {
                 const updatedCard = response.data.updatedCard;
-                updatedCard.imageSrc = card.imageSrc; 
+                updatedCard.imageSrc = card.imageSrc; // Preserve imageSrc
                 setCard(updatedCard);
 
                 const existingItem = cart.find(item => item.id === card.id && item.color === selectedColor);

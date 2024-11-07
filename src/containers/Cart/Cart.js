@@ -22,24 +22,34 @@ function Cart() {
     const fetchStock = async () => {
       try {
         const response = await axios.get('/api/cards-catalog');
-        const stockData = response.data.reduce((acc, card) => {
-          card.stock.forEach(stockItem => {
-            acc[`${card.id}-${stockItem.color}`] = stockItem.amount;
-          });
-          return acc;
-        }, {});
-        setStock(stockData);
+        console.log('Response data:', response.data); 
+        if (Array.isArray(response.data)) { 
+          const stockData = response.data.reduce((acc, card) => {
+            card.stock.forEach(stockItem => {
+              acc[`${card.id}-${stockItem.color}`] = stockItem.amount;
+            });
+            return acc;
+          }, {});
+          setStock(stockData);
+        } else {
+          console.error('Expected an array but got:', typeof response.data);
+        }
       } catch (error) {
-        console.error('Error fetching stock data:', error);
+        console.error('Error fetching stock:', error);
       }
     };
 
     fetchStock();
-  }, [dispatch]);
+  }, []);
 
   const handleIncrement = async (itemId, itemColor) => {
     const stockKey = `${itemId}-${itemColor}`;
     const stockAmount = stock[stockKey] || 0;
+
+    if (stockAmount <= 0) {
+      alert('Cannot add more items, out of stock');
+      return;
+    }
 
     try {
       const response = await axios.patch('/api/update-stock', {
@@ -106,7 +116,7 @@ function Cart() {
     }
   };
 
-  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const imageSrc = (imgpath) => getImageSrc(imgpath);
 

@@ -17,7 +17,7 @@ const validationSchema = Yup.object({
     .required('Last Name is required')
     .matches(/^[a-zA-Z]+$/, 'Last Name can only contain letters'),
   email: Yup.string()
-    .email('Invalid email address')
+    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, 'Invalid email address')
     .required('Email is required'),
   phone: Yup.string()
     .required('Phone is required')
@@ -46,11 +46,8 @@ function CheckOut() {
           onSubmit={async (values, { setSubmitting }) => {
             console.log(values);
             try {
-              // Clear localStorage
               localStorage.removeItem('cart');
-              // Update Redux state
               dispatch(setCart([]));
-              // Navigate to success page
               navigate('/success');
             } catch (error) {
               console.error('Failed to clear cart:', error);
