@@ -2,15 +2,18 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
-import { setToken, register } from '../../utils/auth.js';
 import ErrorMessage  from '../CheckOut/ErrorMessage.js';
 import './Register.css';
 import DocumentTitle from '../../components/helmet/document_title.js';
+import { useDispatch } from 'react-redux';
+import { setToken, register, getCart } from '../../utils/auth.js';
+import { setCart } from '../../Redux/CartSlice.js';
 
 function Register() {
   DocumentTitle('Register');
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const validationSchema = Yup.object().shape({
     username: Yup.string()
@@ -40,6 +43,8 @@ function Register() {
               password: values.password,
             });
             setToken(user.email);
+            const userCart = await getCart();
+            dispatch(setCart(userCart.items));
             navigate('/home');
           } catch (error) {
             console.error('Register error:', error);
