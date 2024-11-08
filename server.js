@@ -152,6 +152,25 @@ app.patch('/api/update-stock', async (req, res) => {
   }
 });
 
+app.patch('/api/clear-cart', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  try {
+    const user = await User.findOne({ where: { email: token } });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const cart = await Cart.findOne({ where: { user_id: user.id } });
+    if (!cart) {
+      return res.status(404).json({ error: 'Cart not found' });
+    }
+    cart.items = [];
+    await cart.save();
+    res.status(200).json({ message: 'Cart cleared successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.post('/api/register', async (req, res) => {
   const { username, email, password } = req.body;
   try {
@@ -220,10 +239,10 @@ app.post('/api/cart', async (req, res) => {
     }
     let cart = await Cart.findOne({ where: { user_id: user.id } });
     if (cart) {
-      cart.items = items;
+      cart.items = items.length ? items : [];
       await cart.save();
     } else {
-      cart = await Cart.create({ user_id: user.id, items });
+      cart = await Cart.create({ user_id: user.id, items: items.length ? items : [] });
     }
     res.status(201).json(cart);
   } catch (error) {
@@ -261,6 +280,26 @@ app.delete('/api/cart', async (req, res) => {
     }
     await cart.destroy();
     res.status(200).json({ message: 'Cart cleared successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.patch('/api/cart/remove-item', async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  const { itemId, itemColor } = req.body;
+  try {
+    const user = await User.findOne({ where: { email: token } });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const cart = await Cart.findOne({ where: { user_id: user.id } });
+    if (!cart) {
+      return res.status(404).json({ error: 'Cart not found' });
+    }
+    cart.items = cart.items.filter(item => !(item.id === itemId && item.color === itemColor));
+    await cart.save();
+    res.status(200).json({ message: 'Item removed successfully', cart });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
