@@ -2,15 +2,18 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
-import { setToken, login } from '../../utils/auth.js';
 import ErrorMessage from "../CheckOut/ErrorMessage.js";
 import './Login.css';
 import DocumentTitle from '../../components/helmet/document_title.js';
+import { useDispatch } from 'react-redux';
+import { setToken, login, getCart } from '../../utils/auth.js';
+import { setCart } from '../../Redux/CartSlice.js';
 
 function Login() {
   DocumentTitle('Login');
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -31,6 +34,8 @@ function Login() {
           try {
             const { token } = await login(values);
             setToken(token);
+            const userCart = await getCart();
+            dispatch(setCart(userCart.items));
             navigate('/home');
           } catch (error) {
             console.error('Login error:', error);
