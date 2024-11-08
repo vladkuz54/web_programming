@@ -8,7 +8,7 @@ import './CheckOut.css';
 import { useDispatch } from 'react-redux';
 import { setCart } from '../../Redux/CartSlice.js';
 import Header from '../Header/Header.js';
-import { getToken } from '../../utils/auth.js';
+import { getToken, clearCart } from '../../utils/auth.js';
 
 const validationSchema = Yup.object({
   firstName: Yup.string()
@@ -36,7 +36,7 @@ function CheckOut() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const token = getToken();
+  const token = getToken();	
 
   return (
     <>
@@ -46,16 +46,13 @@ function CheckOut() {
       <Formik
           initialValues={{ firstName: '', lastName: '', email: token || '', phone: '', address: '' }}
           validationSchema={validationSchema}
-          onSubmit={async ({ setSubmitting }) => {
+          onSubmit={async (values, { setSubmitting }) => {
             try {
-              const token = getToken();
+              
               if (token) {
-                // Clear localStorage for the specific user
-                localStorage.removeItem(`cartItems_${token}`);
+                await clearCart();
               }
-              // Update Redux state
               dispatch(setCart([]));
-              // Navigate to success page
               navigate('/success');
             } catch (error) {
               console.error('Failed to clear cart:', error);
