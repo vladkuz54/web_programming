@@ -1,7 +1,7 @@
 // src/db.js
 import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize('accounts', 'root', '2077vkuz', {
+const sequelize = new Sequelize('accounts', 'root', 'root', {
   host: 'localhost',
   dialect: 'mysql',
 });
