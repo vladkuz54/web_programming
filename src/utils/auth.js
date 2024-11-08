@@ -66,7 +66,17 @@ export const getCart = async () => {
 
 export const clearCart = async () => {
   const token = getToken();
-  const response = await axios.delete('/api/cart', {
+  const response = await axios.patch('/api/clear-cart', {}, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+};
+
+export const removeItemFromCart = async (itemId, itemColor) => {
+  const token = getToken();
+  const response = await axios.patch('/api/cart/remove-item', { itemId, itemColor }, {
     headers: {
       Authorization: `Bearer ${token}`
     }
