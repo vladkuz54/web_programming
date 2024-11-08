@@ -8,7 +8,7 @@ import DocumentTitle from '../../components/helmet/document_title.js';
 import Loader from '../../components/Loader/Loader.js';
 import axios from 'axios';
 import Header from '../Header/Header.js';
-import { getToken, getCart, addToCart } from '../../utils/auth.js';
+import { getToken, getCart, addToCart, removeItemFromCart } from '../../utils/auth.js';
 
 function Cart() {
   DocumentTitle('Cart');
@@ -119,6 +119,7 @@ function Cart() {
           dispatch(decrementQuantity({ id: itemId, color: itemColor }));
         } else {
           dispatch(removeItem({ id: itemId, color: itemColor }));
+          await removeItemFromCart(itemId, itemColor);
         }
         setStock(prevStock => ({
           ...prevStock,
