@@ -18,10 +18,6 @@
       {
         "color": "green",
         "amount": 10
-      },
-      {
-        "color": "yellow",
-        "amount": 10
       }
     ]
   },
@@ -35,7 +31,7 @@
     "stock": [
       {
         "color": "red",
-        "amount": 3
+        "amount": 9
       },
       {
         "color": "blue",
@@ -57,7 +53,7 @@
     "stock": [
       {
         "color": "red",
-        "amount": 10
+        "amount": 9
       },
       {
         "color": "blue",
@@ -167,7 +163,7 @@
     "stock": [
       {
         "color": "red",
-        "amount": 10
+        "amount": 9
       },
       {
         "color": "blue",
