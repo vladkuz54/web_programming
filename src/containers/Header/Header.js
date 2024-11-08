@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import "./Header.css";
 import logo from "../../components/image/logo.png";
 import Navigation from "../Navigation/Navigation.js";
 import { removeToken, getToken, getUserInfo } from "../../utils/auth.js";
+import { clearCart } from "../../Redux/CartSlice.js";
 import axios from 'axios';
 
 function Header() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState({ username: '', email: '' });
 
   useEffect(() => {
@@ -43,9 +46,10 @@ function Header() {
             }
           });
         }
-        
+
         localStorage.removeItem(`cartItems_${token}`);
         removeToken();
+        dispatch(clearCart());
         navigate('/register');
       } catch (error) {
         console.error('Error signing out:', error);
